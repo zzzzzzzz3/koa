@@ -64,8 +64,12 @@ router.post('/pull',async (ctx,next)=>{
         }
     },(err,stderr,stdout)=>{
         console.log(err); 
+	if(err){
+            ctx.body = `--------------change error-------------\n${err.toString()}\n`;
+	}else{
+            ctx.body = `--------------change success-------------\n${ctx.request.body.toString()}\n`;
+	}
     });
-    ctx.body = `--------------change-------------\n${ctx.request.body}\n`;
 })
 
 app.use(router.routes());
