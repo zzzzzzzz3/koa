@@ -1,6 +1,5 @@
 const Koa = require('koa');
 const koarouter = require('koa-router');
-const child_process = require('child_process');
 const bodyparser = require('koa-bodyparser');
 
 const app = new Koa();
@@ -54,25 +53,8 @@ router.post('/sign',async (ctx,next)=>{
     }
 })
 
-//处理github hook
-router.post('/pull',async (ctx,next)=>{
-    console.log(ctx.request.body);
-    child_process.execFile("/home/koa-demo/pull.sh",[],{
-        env:{
-            PATH:process.env.PATH,
-            HOME:process.env.HOME
-        }
-    },(err,stderr,stdout)=>{
-        console.log(err.toString()); 
-	if(err){
-            ctx.body = `--------------change error-------------\n${err.toString()}\n`;
-	}else{
-            ctx.body = `--------------change success-------------\n${ctx.request.body.toString()}\n`;
-	}
-    });
-})
-
 app.use(router.routes());
+
 
 
 app.listen(3000);
