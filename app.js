@@ -57,7 +57,7 @@ router.post('/sign',async (ctx,next)=>{
 //处理github hook
 router.post('/pull',async (ctx,next)=>{
     console.log(ctx.request.body);
-    child_process.execFile("/home/koa-deme/pull.sh",[],{
+    child_process.execFile("/home/koa-demo/pull.sh",[],{
         env:{
             PATH:process.env.PATH,
             HOME:process.env.HOME
