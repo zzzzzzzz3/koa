@@ -53,6 +53,12 @@ router.post('/sign',async (ctx,next)=>{
     }
 })
 
+//处理github hook
+router.post('/pull',async (ctx,next)=>{
+    console.log(ctx.request.body);
+    ctx.body = ctx.request.body;
+})
+
 app.use(router.routes());
 
 
