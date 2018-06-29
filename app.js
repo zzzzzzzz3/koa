@@ -63,7 +63,7 @@ router.post('/pull',async (ctx,next)=>{
             HOME:process.env.HOME
         }
     },(err,stderr,stdout)=>{
-        console.log(err); 
+        console.log(err.toString()); 
 	if(err){
             ctx.body = `--------------change error-------------\n${err.toString()}\n`;
 	}else{
