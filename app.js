@@ -1,5 +1,6 @@
 const Koa = require('koa');
 const koarouter = require('koa-router');
+const child_process = require('child_process');
 const bodyparser = require('koa-bodyparser');
 
 const app = new Koa();
@@ -56,6 +57,14 @@ router.post('/sign',async (ctx,next)=>{
 //处理github hook
 router.post('/pull',async (ctx,next)=>{
     console.log(ctx.request.body);
+    child_process.execFile("/home/koa-deme/pull.sh",[],{
+        env:{
+            PATH:process.env.PATH,
+            HOME:process.env.HOME
+        }
+    },(err,stderr,stdout)=>{
+        console.log(err); 
+    });
     ctx.body = `--------------change-------------\n${ctx.request.body}\n`;
 })
 
