@@ -28,7 +28,7 @@ router.get('/hello/:name',async (ctx,next)=>{
 
 router.get('/',async (ctx,next)=>{
     const name = ctx.params.name;
-    ctx.response.body = `<h1>Welcome Koa2</h1>`;
+    ctx.response.body = `<h1>Welcome Koa2 aaaaa</h1>`;
 })
 
 // 处理post请求
