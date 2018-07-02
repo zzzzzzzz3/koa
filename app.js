@@ -7,6 +7,7 @@ const router = koarouter();
 
 //添加异步处理函数（处理中间件），函数会顺序执行
 app.use(async (ctx,next)=>{
+    console.log('\n---------------------------------------------------\n');
     console.log(`Process: ${ctx.request.method} ${ctx.request.url}`);
     const start_at = new Date();
     console.log(`Start at: ${start_at.toString()}`);
@@ -14,6 +15,7 @@ app.use(async (ctx,next)=>{
     const end_at = new Date();
     console.log(`End at: ${end_at.toString()}`);
     console.log(`Time cost: ${end_at.getTime() - start_at.getTime()} ms`);
+    console.log('\n---------------------------------------------------\n');
 })
 
 // 在使用router前先添加bodyparser
