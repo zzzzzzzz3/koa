@@ -8,23 +8,14 @@ const router = koarouter();
 //添加异步处理函数（处理中间件），函数会顺序执行
 app.use(async (ctx,next)=>{
     console.log(`Process: ${ctx.request.method} ${ctx.request.url}`);
+    const start_at = new Date();
+    console.log(`Start at: ${start_at.toString()}`);
     await next(); //调用下一个函数
+    const end_at = new Date();
+    console.log(`End at: ${end_at.toString()}`);
+    console.log(`Time cost: ${end_at.getTime() - start_at.getTime()} ms`);
 })
 
-app.use(async (ctx,next)=>{
-    const start_time = new Date().getTime();
-    await next();
-    const ms = new Date().getTime() - start_time;
-    console.log(`Time cost: ${ms}`)
-})
-
-// app.use(async (ctx,next)=>{
-//     await next();
-//     ctx.response.type = 'text/html';
-//     ctx.response.body = '<h1>Hello,KOA</h1>';
-// })
-
-// app.use(formidable());
 // 在使用router前先添加bodyparser
 app.use(bodyparser());
 
@@ -35,7 +26,7 @@ router.get('/hello/:name',async (ctx,next)=>{
 
 router.get('/',async (ctx,next)=>{
     const name = ctx.params.name;
-    ctx.response.body = `<h1>Welcome Koa</h1>`;
+    ctx.response.body = `<h1>Welcome Koa2</h1>`;
 })
 
 // 处理post请求
