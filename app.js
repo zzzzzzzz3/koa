@@ -5,6 +5,8 @@ const bodyparser = require('koa-bodyparser');
 const app = new Koa();
 const router = koarouter();
 
+const { query } = require('./db')
+
 //添加异步处理函数（处理中间件），函数会顺序执行
 app.use(async (ctx,next)=>{
     console.log('\n---------------------------------------------------\n');
@@ -21,9 +23,10 @@ app.use(async (ctx,next)=>{
 // 在使用router前先添加bodyparser
 app.use(bodyparser());
 
-router.get('/hello/:name',async (ctx,next)=>{
-    const name = ctx.params.name;
-    ctx.response.body = `<h1>Hello,${name}</h1>`;
+router.get('/user/list',async (ctx,next)=>{
+    const sql = "select * from user";
+    const result = await query(sql);
+    ctx.response.body = result;
 })
 
 router.get('/',async (ctx,next)=>{
