@@ -1,7 +1,7 @@
 const mysql      = require('mysql');
 
 const pool  = mysql.createPool({
-    host     : 'localhost',   // 数据库地址
+    host     : '120.79.185.179',   // 数据库地址
     user     : 'root',    // 数据库用户
     password : 'zhang1107' ,  // 数据库密码
     database : 'test'  // 选中数据库
